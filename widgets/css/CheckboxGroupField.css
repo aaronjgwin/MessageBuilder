@@ -1,0 +1,72 @@
+/* ==========================================================================
+   WIDGET: CHECKBOX GROUP MATRIX CONTAINER (.checkboxgroupfield-widget)
+   ========================================================================== */
+.checkboxgroupfield-widget {
+    --cbg-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.checkboxgroupfield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.checkboxgroupfield-widget .field-asterisk {
+    color: var(--cbg-text-error);
+    font-weight: bold;
+}
+
+/* Master Grid Area Frame Box Wrapper */
+.checkboxgroupfield-widget .checkbox-list-container {
+    background-color: #1d262c;
+    border: 1px solid #435360;
+    padding: 12px;
+    height: auto;
+    min-height: 110px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 12px;
+    align-items: center;
+}
+
+/* Master Select All Structural Row Header */
+.checkboxgroupfield-widget .select-all-header-row {
+    grid-column: span 4;
+    margin-bottom: 4px;
+}
+
+.checkboxgroupfield-widget .select-all-bold {
+    font-weight: bold;
+}
+
+/* Section dividers slicing across full line coordinates */
+.checkboxgroupfield-widget .checkbox-group-bucket-title {
+    grid-column: span 4;
+    font-size: 11px;
+    font-weight: bold;
+    color: #b0c2ce;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed #384550;
+    width: 100%;
+}
+
+/* Individual Cell Row Layout Coordinates */
+.checkboxgroupfield-widget .checkbox-list-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    width: 100%;
+}
+
+.checkboxgroupfield-widget .checkbox-list-row input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   WIDGET: TIME FIELD INPUT MASK (.timefield-widget)
+   ========================================================================== */
+.timefield-widget {
+    --tf-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.timefield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.timefield-widget .field-asterisk {
+    color: var(--tf-text-error);
+    font-weight: bold;
+}
+
+/* Scoped selector ensuring text numbers stack evenly without forcing padding gaps */
+.timefield-widget .form-time-input {
+    width: 100%;
+    box-sizing: border-box;
+}

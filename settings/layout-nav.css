@@ -1,0 +1,159 @@
+/* File location: ./settings/layout-nav.css */
+
+.layout-container {
+    background-color: var(--bg-browser);
+    display: flex;
+    flex-direction: row; /* Forces sidebar and scroll panel to sit side-by-side */
+    flex: 1;             /* Tells container to fill remaining space */
+    height: calc(100vh - 56px);
+    min-height: calc(100vh - 56px);
+    max-height: calc(100vh - 56px);
+    overflow: hidden;
+    width: 100%;
+}
+
+body.is-edge .layout-container {
+    height: calc(100vh - 56px);
+    min-height: calc(100vh - 56px);
+    max-height: calc(100vh - 56px);
+}
+
+/* Sidebar structure bounds rules */
+.layout-container .column.sidebar-column {
+    width: var(--sidebar-width);
+    padding: 12px 0 0 0;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: hidden;
+    border-right: 1px solid var(--border-section);
+}
+
+body.is-chrome .layout-container .column.sidebar-column {
+    border-right: none !important; /* Retains your clean borderless dark mode look */
+}
+
+body.is-edge .layout-container .column.sidebar-column {
+    border-right: none;
+    padding-top: 24px;
+    width: 290px;
+}
+
+body.is-edge nav {
+    padding-left: 0px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: var(--nav-radius);
+    margin: 2px 12px;
+    gap: 12px;
+    transition: background-color 100ms ease, color 100ms ease;
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+body.is-chrome nav ul li {
+    margin: 2px 12px 2px 0; /* Right margin cleared to let active capsule float beautifully */
+}
+
+body.is-edge nav ul li {
+    margin: 2px 12px 2px 50px;
+    padding: 0 16px;
+    border-radius: var(--nav-radius) !important;
+    border-left: none;
+    corner-shape: squircle;
+    -webkit-mask-box-image: none;
+}
+
+nav ul li .sidebar-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    margin-right: 4px;
+}
+
+nav ul li:hover {
+    background-color: var(--nav-hover);
+}
+
+nav ul li.active {
+    background-color: var(--accent-light);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+body.is-chrome nav ul li.active {
+    color: var(--accent-blue);
+}
+
+body.is-edge nav ul li.active {
+    background-color: var(--accent-light);
+    font-weight: 500;
+}
+
+body.is-edge nav ul li.active::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    background-color: var(--accent-black);
+    border-radius: 2px;
+}
+
+nav ul li.active .sidebar-icon {
+    color: var(--accent-blue);
+}
+
+body.is-edge nav ul li.active .sidebar-icon {
+    color: var(--text-primary);
+}
+
+nav ul li label {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    user-select: none;
+}
+
+nav ul li.section-break-divider {
+    height: 1px;
+    padding: 0;
+    margin: 8px 12px;
+    background-color: var(--border-section);
+    cursor: default;
+    pointer-events: none;
+    border-left: none;
+}
+
+/* ==========================================================================
+   MATCHING YOUR IMAGES: Chrome Dark Mode Active Left Sidebar Pill Selection
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    body.is-chrome nav ul li.active {
+        background-color: rgba(138, 180, 248, 0.12) !important; /* Translucent blue fill overlay */
+        color: #8ab4f8 !important;                              /* Vibrant blue text typography */
+        border-radius: 0 20px 20px 0 !important;                /* THE ROUNDED PILL CAPSULE SHAPE FIX */
+        font-weight: 500;
+    }
+
+    body.is-chrome nav ul li.active .sidebar-icon {
+        color: #8ab4f8 !important;                              /* Matches icon color to text letters */
+    }
+}

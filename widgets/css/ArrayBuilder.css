@@ -1,0 +1,526 @@
+/* File location: ./widgets/ArrayBuilder.css */
+
+/* ==========================================================================
+   THEME VARIABLES: Map directly to global theme tokens
+   ========================================================================== */
+.arraybuilder-widget {
+    --ab-font-family: inherit;
+    --ab-background-card: var(--bg-surface, #ffffff);
+    --ab-border-color: var(--border-color, #e0e0e0);
+    --ab-text-primary: var(--text-primary, #333333);
+    --ab-text-secondary: var(--text-secondary, #666666);
+    --ab-text-error: #d32f2f;
+
+    /* Inputs & Controls */
+    --ab-input-bg: var(--search-bg, #ffffff);
+    --ab-input-border: var(--border-color, #cccccc);
+    --ab-input-focus-border: var(--accent-blue, #0066cc);
+
+    /* Buttons */
+    --ab-btn-bg: transparent;
+    --ab-btn-text: var(--accent-blue, #333333);
+    --ab-btn-border: var(--border-color, #cccccc);
+    --ab-btn-hover-bg: var(--accent-light, #e0e0e0);
+
+    /* Drag & Drop Feedback states */
+    --ab-drag-opacity: 0.4;
+    --ab-drag-indicator-color: var(--accent-blue, #0066cc);
+
+    /* Layout Structure */
+    font-family: var(--ab-font-family);
+    color: var(--ab-text-primary);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Base framework elements from inherited BaseField */
+.arraybuilder-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.arraybuilder-widget label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ab-text-primary);
+}
+
+.arraybuilder-widget .field-asterisk {
+    color: var(--ab-text-error);
+}
+
+/* ==========================================================================
+   WIDGET STRUCTURE: Cards, Rows, and Content Containers
+   ========================================================================== */
+.arraybuilder-widget .settings-card.spaced-card-top {
+    margin-top: 16px;
+    background: var(--ab-background-card);
+    border: 1px solid var(--ab-border-color);
+    border-radius: var(--card-radius, 6px);
+    box-shadow: var(--card-shadow, none);
+}
+
+.arraybuilder-widget .new-entry-row.inline-form-row.section-border-bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--ab-border-color);
+}
+
+.arraybuilder-widget .new-entry-row.inline-form-row.section-border-bottom div {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.arraybuilder-widget .new-entry-row.inline-form-row.section-border-bottom span {
+    position: absolute;
+    left: 12px;
+    font-size: 12px;
+    color: var(--ab-text-secondary);
+    pointer-events: none;
+}
+
+/* Unified Wrapper Context */
+.arraybuilder-widget .unified-input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.arraybuilder-widget .search-icon-indicator {
+    position: absolute;
+    left: 12px;
+    font-size: 12px;
+    color: var(--ab-text-secondary);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ==========================================================================
+   FORM INPUT CONTROLS
+   ========================================================================== */
+.arraybuilder-widget .form-input-field {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: var(--ab-input-bg);
+    border: 1px solid var(--ab-input-border);
+    border-radius: 4px;
+    color: var(--ab-text-primary);
+    box-sizing: border-box;
+    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.arraybuilder-widget textarea.form-input-field {
+    height: 100px;
+}
+
+.arraybuilder-widget .form-input-field:focus {
+    outline: none;
+    border-color: var(--ab-input-focus-border);
+}
+
+/* Explicit treatment for the top search/append input field */
+.arraybuilder-widget .unified-input-wrapper .form-input-field {
+    padding-left: 32px !important;
+}
+
+.arraybuilder-widget .unified-input-wrapper .search-icon-indicator {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   DYNAMIC ACTION BUTTONS
+   ========================================================================== */
+.arraybuilder-widget button.chrome-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--ab-btn-bg);
+    color: var(--ab-btn-text);
+    border: 1px solid var(--ab-btn-border);
+    border-radius: 4px !important;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.arraybuilder-widget button.chrome-btn-secondary:hover {
+    background: var(--ab-btn-hover-bg);
+}
+
+.arraybuilder-widget .new-entry-row button.chrome-btn-secondary {
+    font-size: 16px;
+    width: 36px;
+    height: 32px;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   DYNAMIC DOCK ENTRY LIST (NO INTERNAL SCROLLBAR)
+   ========================================================================== */
+.arraybuilder-widget .unstyled-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: none !important;
+    height: auto !important;
+    overflow-y: visible !important;
+}
+
+.arraybuilder-widget .settings-row.draggable-array-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--ab-border-color);
+    background: var(--ab-background-card);
+    position: relative;
+    transition: transform 0.2s ease, border 0.15s ease, background-color 0.15s ease;
+}
+
+.arraybuilder-widget .settings-row.draggable-array-row:last-child {
+    border-bottom: none;
+}
+
+.arraybuilder-widget .toolbar-actions-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.arraybuilder-widget .array-row-drag-handle {
+    color: var(--ab-text-secondary);
+    font-size: 16px;
+    cursor: grab;
+    user-select: none;
+    padding: 4px;
+}
+
+.arraybuilder-widget .array-row-drag-handle:active {
+    cursor: grabbing;
+}
+
+.arraybuilder-widget .row-index.settings-row-title {
+    min-width: 24px;
+    font-size: 13px;
+    color: var(--ab-text-secondary);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   DRAG AND DROP STATE FEEDBACK LAYERS
+   ========================================================================== */
+.arraybuilder-widget .draggable-array-row.is-dragging-row {
+    opacity: var(--ab-drag-opacity, 0.4) !important;
+    background-color: var(--ab-input-bg, var(--search-bg)) !important;
+    border: 1px dashed var(--ab-border-color, var(--border-color)) !important;
+}
+
+.arraybuilder-widget .draggable-array-row.drag-target-above::before,
+.arraybuilder-widget .draggable-array-row.drag-target-below::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--ab-drag-indicator-color, var(--accent-blue)) !important;
+    z-index: 10;
+}
+
+.arraybuilder-widget .draggable-array-row.drag-target-above::before {
+    top: 0;
+}
+
+.arraybuilder-widget .draggable-array-row.drag-target-below::after {
+    bottom: 0;
+}
+
+/* Locked row appearance */
+.arraybuilder-widget .draggable-array-row.is-locked {
+    opacity: 0.7;
+}
+
+.arraybuilder-widget .draggable-array-row.is-locked .array-row-drag-handle {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.arraybuilder-widget .draggable-array-row.is-locked input:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.arraybuilder-widget .draggable-array-row.is-locked button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER TOGGLE GROUP & PENCIL ICON
+   ========================================================================== */
+.arraybuilder-widget .field-header-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 8px !important;
+    width: 100%;
+}
+
+.arraybuilder-widget .field-header-row label {
+    text-transform: uppercase;
+}
+
+.arraybuilder-widget .field-header-row label:not(.toggle-switch) {
+    margin-bottom: 0 !important;
+}
+
+.arraybuilder-widget .toggle-group-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.arraybuilder-widget .toggle-group-wrapper:has(input:checked)::before {
+    color: var(--accent-blue, #a8cdfc);
+}
+/* ==========================================================================
+   ARRAYBUILDER THEME INTEGRATION & OVERFLOW CONTROLS
+   ========================================================================== */
+.arraybuilder-widget {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    color: var(--text-primary);
+    box-shadow: var(--card-shadow);
+}
+
+.arraybuilder-widget .widget-label,
+.arraybuilder-widget label {
+    color: var(--text-secondary);
+}
+
+.arraybuilder-widget input[type="text"],
+.arraybuilder-widget input {
+    background-color: var(--search-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.arraybuilder-widget input[readonly] {
+    color: var(--text-secondary);
+    opacity: 0.9;
+}
+
+.arraybuilder-widget input[type="text"]::placeholder {
+    color: var(--text-secondary);
+}
+
+.arraybuilder-widget input[type="text"]:focus {
+    border-color: var(--accent-blue);
+}
+
+.arraybuilder-widget .items-scroll-container,
+.arraybuilder-widget [class*="scroll"] {
+    max-height: none;
+    height: auto;
+    overflow-y: visible;
+    border-top: 1px solid var(--border-section);
+    border-bottom: 1px solid var(--border-section);
+}
+
+.arraybuilder-widget .array-item-row {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-section);
+}
+
+.arraybuilder-widget button {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.arraybuilder-widget button:hover {
+    background-color: var(--nav-hover);
+}
+/* ==========================================================================
+   ARRAYBUILDER WIDGET BADGES
+   ========================================================================== */
+
+/* Base Badge Layout */
+.arraybuilder-widget .badge-type {
+    align-items: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT MODE PALETTES
+   -------------------------------------------------------------------------- */
+
+.arraybuilder-widget .badge-array {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    border: 1px solid rgba(26, 115, 232, 0.3);
+}
+
+.arraybuilder-widget .badge-autocomplete {
+    background-color: #e0f7fa;
+    color: #00796b;
+    border: 1px solid rgba(0, 121, 107, 0.3);
+}
+
+.arraybuilder-widget .badge-checkboxgroup {
+    background-color: #fff1f2;
+    color: #be123c;
+    border: 1px solid rgba(190, 18, 60, 0.3);
+}
+
+.arraybuilder-widget .badge-combobox {
+    background-color: #f5f3ff;
+    color: #6d28d9;
+    border: 1px solid rgba(109, 40, 217, 0.3);
+}
+
+.arraybuilder-widget .badge-currency {
+    background-color: #ecfdf5;
+    color: #047857;
+    border: 1px solid rgba(4, 120, 87, 0.3);
+}
+
+.arraybuilder-widget .badge-integer {
+    background-color: #e6f4ea;
+    color: #137333;
+    border: 1px solid rgba(19, 115, 51, 0.3);
+}
+
+.arraybuilder-widget .badge-map {
+    background-color: #f3e8fd;
+    color: #9334e6;
+    border: 1px solid rgba(147, 52, 230, 0.3);
+}
+
+.arraybuilder-widget .badge-objectselect {
+    background-color: #fdf4ff;
+    color: #a21caf;
+    border: 1px solid rgba(162, 28, 175, 0.3);
+}
+
+.arraybuilder-widget .badge-select {
+    background-color: #eef2ff;
+    color: #4338ca;
+    border: 1px solid rgba(67, 56, 202, 0.3);
+}
+
+.arraybuilder-widget .badge-text {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.arraybuilder-widget .badge-time {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border: 1px solid rgba(194, 65, 12, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   DARK MODE ADAPTIVE OVERRIDES
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+    .arraybuilder-widget .badge-array {
+        background-color: rgba(138, 180, 248, 0.15);
+        color: #8ab4f8;
+        border: 1px solid rgba(138, 180, 248, 0.3);
+    }
+
+    .arraybuilder-widget .badge-autocomplete {
+        background-color: rgba(45, 212, 191, 0.15);
+        color: #2dd4bf;
+        border: 1px solid rgba(45, 212, 191, 0.3);
+    }
+
+    .arraybuilder-widget .badge-checkboxgroup {
+        background-color: rgba(251, 113, 133, 0.15);
+        color: #fb7185;
+        border: 1px solid rgba(251, 113, 133, 0.3);
+    }
+
+    .arraybuilder-widget .badge-combobox {
+        background-color: rgba(167, 139, 250, 0.15);
+        color: #a78bfa;
+        border: 1px solid rgba(167, 139, 250, 0.3);
+    }
+
+    .arraybuilder-widget .badge-currency {
+        background-color: rgba(52, 211, 153, 0.15);
+        color: #34d399;
+        border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .arraybuilder-widget .badge-integer {
+        background-color: rgba(129, 201, 149, 0.15);
+        color: #81c995;
+        border: 1px solid rgba(129, 201, 149, 0.3);
+    }
+
+    .arraybuilder-widget .badge-map {
+        background-color: rgba(206, 147, 216, 0.15);
+        color: #d8b4fe;
+        border: 1px solid rgba(216, 180, 254, 0.3);
+    }
+
+    .arraybuilder-widget .badge-objectselect {
+        background-color: rgba(232, 121, 249, 0.15);
+        color: #e879f9;
+        border: 1px solid rgba(232, 121, 249, 0.3);
+    }
+
+    .arraybuilder-widget .badge-select {
+        background-color: rgba(129, 140, 248, 0.15);
+        color: #818cf8;
+        border: 1px solid rgba(129, 140, 248, 0.3);
+    }
+
+    .arraybuilder-widget .badge-text {
+        background-color: rgba(148, 163, 184, 0.15);
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .arraybuilder-widget .badge-time {
+        background-color: rgba(251, 146, 60, 0.15);
+        color: #fdba74;
+        border: 1px solid rgba(251, 146, 60, 0.3);
+    }
+}

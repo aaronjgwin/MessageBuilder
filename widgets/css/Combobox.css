@@ -1,0 +1,35 @@
+/* ==========================================================================
+   WIDGET: COMBOBOX COMBINATION FIELD (.combobox-widget)
+   ========================================================================== */
+.combobox-widget {
+    --cb-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.combobox-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.combobox-widget .field-asterisk {
+    color: var(--cb-text-error);
+    font-weight: bold;
+}
+
+/* Flex row container wrapping child selectors and inputs side-by-side */
+.combobox-widget .combobox-field-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 4px;
+}
+
+/* Force dropdown menu options and inputs to share identical flex partitions */
+.combobox-widget .combobox-field-container .combobox-selector,
+.combobox-widget .combobox-field-container .combobox-text-input {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    box-sizing: border-box;
+}

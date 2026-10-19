@@ -1,0 +1,123 @@
+/* File location: ./settings/buttons-chrome.css */
+
+/* --- CHROME PRIMARY ACTIONS BUTTON (ROYAL BLUE STYLE) --- */
+body.is-chrome button.chrome-btn-primary {
+    background-color: #1a73e8;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 150ms ease;
+}
+
+body.is-chrome button.chrome-btn-primary:hover {
+    background-color: #1557b0;
+}
+
+/* --- CHROME SECONDARY ACTIONS BUTTON (TRANSLUCENT BLUE HOVER STYLE) --- */
+body.is-chrome button.chrome-btn-secondary {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 100ms ease, border-color 100ms ease;
+}
+
+body.is-chrome button.chrome-btn-secondary:hover {
+    background-color: var(--accent-light);
+    border-color: var(--border-color);
+}
+
+/* --- CHROME DANGER ACTIONS BUTTON --- */
+body.is-chrome button.chrome-btn-danger {
+    background-color: #d93025;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 150ms ease;
+}
+
+body.is-chrome button.chrome-btn-danger:hover {
+    background-color: #c5221f;
+}
+
+/* ==========================================================================
+   CHROME SYSTEM DARK MODE THEME SPECS
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    /* Chrome Dark Mode Primary Button Profile Override */
+    body.is-chrome button.chrome-btn-primary {
+        background-color: #8ab4f8 !important; /* Pastel material light blue */
+        color: #202124 !important;            /* Solid dark matte charcoal typography */
+        border: none !important;
+        border-radius: 4px !important;
+        font-weight: 500;
+    }
+
+    body.is-chrome button.chrome-btn-primary:hover {
+        background-color: #aecbfa !important;
+    }
+
+    /* Chrome Dark Mode Secondary Button Pill Profile */
+    body.is-chrome button.chrome-btn-secondary {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+        color: #a8cdfc !important;
+        border: 1px solid rgba(138, 180, 248, 0.4) !important;
+        border-radius: 20px !important; /* Full capsule geometry for top action bars */
+        font-size: 12px;
+        font-weight: 500;
+        height: 32px;
+        padding: 0 16px;
+        transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    body.is-chrome button.chrome-btn-secondary:hover {
+        background-color: rgba(138, 180, 248, 0.12) !important;
+        border-color: #8ab4f8 !important;
+    }
+
+    /* Chrome Dark Mode Danger Button Profile Override */
+    body.is-chrome button.chrome-btn-danger {
+        background-color: #f28b82 !important; /* Pastel material red */
+        color: #202124 !important;            /* Dark charcoal typography */
+        border: none !important;
+        border-radius: 4px !important;
+        font-weight: 500;
+    }
+
+    body.is-chrome button.chrome-btn-danger:hover {
+        background-color: #f6aea9 !important;
+    }
+
+    /* Standard rectangular geometry override for inline utility controls and widgets */
+    body.is-chrome .inline-form-row button.chrome-btn-secondary,
+    body.is-chrome .arraybuilder-widget button.chrome-btn-secondary {
+        border-radius: 4px !important;
+    }
+}

@@ -1,0 +1,34 @@
+/* ==========================================================================
+   WIDGET: TEXT FIELD BUILDER (.textfield-widget)
+   ========================================================================== */
+.textfield-widget {
+    --tf-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.textfield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.textfield-widget .field-asterisk {
+    color: var(--tf-text-error);
+    font-weight: bold;
+}
+
+/* Wrapper context for input and its accompanying datalist options */
+.textfield-widget .text-field-datalist-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Base structural layout for input text nodes inside the widget context */
+.textfield-widget input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.textfield-widget .input-group textarea.form-input-field {
+    height: 100px;
+}

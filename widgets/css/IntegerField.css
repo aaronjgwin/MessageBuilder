@@ -1,0 +1,24 @@
+/* ==========================================================================
+   WIDGET: INTEGER FIELD INPUT (.integerfield-widget)
+   ========================================================================== */
+.integerfield-widget {
+    --if-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.integerfield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.integerfield-widget .field-asterisk {
+    color: var(--if-text-error);
+    font-weight: bold;
+}
+
+/* Base structural layout for numeric input nodes inside the widget context */
+.integerfield-widget input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}

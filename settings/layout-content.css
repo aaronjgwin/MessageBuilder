@@ -1,0 +1,578 @@
+/* File location: ./settings/layout-content.css */
+
+/* ==========================================================================
+   1. SCROLL WRAPPER ENGINE & CONTENT CHANNEL CENTERING
+   ========================================================================== */
+.scrollpanel-wrapper {
+    flex-grow: 1;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto; /* Vertically scrolls content cleanly on the absolute right wall */
+    display: flex;
+}
+
+/* Content column flex wrapper expands to fill layout bounds */
+.layout-container .column.content-stream-column {
+    flex-grow: 1;
+    height: auto;
+    padding: 0;
+}
+
+/* Dynamically centers your card list down the open runway track */
+.main-content-stream {
+    width: 100%;
+    max-width: var(--content-max-width);
+
+    /*
+       THE CENTERING FIX:
+       Centers the container relative to the whole screen width,
+       while shifting it left by exactly half the sidebar's width to offset it perfectly.
+    */
+    margin: 0 auto 0 calc(50% - (var(--content-max-width) / 2) - (var(--sidebar-width) / 2));
+
+    padding: 24px 40px 60px 40px;
+    box-sizing: border-box;
+}
+
+/* Fallback adjustment: if window shrinks too small, keep it from clipping behind the nav */
+@media (max-width: 1120px) {
+    .main-content-stream {
+        margin: 0 auto;
+    }
+}
+
+/* ==========================================================================
+   2. INTERACTIVE SORT CONTROLS BAR LAYER
+   ========================================================================== */
+.sort-header-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid var(--border-section);
+}
+
+body.is-chrome.dark .sort-header-row {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.sort-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.sort-btn:hover {
+    background-color: var(--nav-hover);
+    color: var(--text-primary);
+}
+
+.sort-btn.active-sort {
+    color: var(--accent-blue);
+}
+
+/* ==========================================================================
+   3. TYPE BADGES
+   ========================================================================== */
+.resource-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Spacing between badge and edit button */
+}
+
+.resource-type-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    user-select: none;
+    min-width: 54px;
+    text-align: center;
+    box-sizing: border-box;
+
+    background-color: var(--bg-surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+body.is-chrome .resource-type-badge {
+    color: var(--accent-blue);
+}
+
+.resource-type-badge.type-array,
+.resource-type-badge.type-map {
+    background-color: rgba(0, 120, 212, 0.04);
+}
+
+/* ==========================================================================
+   4. HOOK PATTERNS, PANEL SWAPS, AND UTILITIES
+   ========================================================================== */
+[data-type="view"]:not(.active) { display: none; }
+[data-type="screen"]:not(.active) { display: none; }
+.unstyled-list { list-style: none; padding: 0; margin: 0; }
+.nav-anchor { color: inherit; text-decoration: none; }
+.card-inner-padding { padding: 20px; }
+.spaced-card-top { margin-top: 16px; }
+.tinted-card-header { background-color: rgba(0, 0, 0, 0.01); }
+.section-border-bottom { border-bottom: 1px solid var(--border-section); }
+.inline-form-row { padding: 16px 20px; display: flex; gap: 12px; align-items: center; }
+.flex-input { flex: 1; }
+.robust-font { font-weight: 600; }
+.right-aligned-actions { justify-content: flex-end; }
+.field-header-row label,
+.form-label-heading { display: block; margin-bottom: 8px; font-weight: 500; text-transform: uppercase; }
+.spacing-bottom-md { margin-bottom: 16px; }
+.spacing-bottom-lg { margin-bottom: 20px; }
+.text-badge-label { font-weight: 500; font-size: 12px; color: var(--text-secondary); }
+.inline-alert-accent { display: none; border-left: 4px solid var(--accent-blue); }
+.alert-message-text { white-space: pre-wrap; font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px; }
+main h2 { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+.toolbar-status-label { font-weight: 500; color: var(--text-primary); font-size: 14px; text-transform: uppercase; }
+.toolbar-actions-block { display: flex; align-items: center; gap: 12px; }
+.settings-row-label-block { display: flex; flex-direction: column; }
+.settings-row-title { font-size: 13px; font-weight: 400; color: var(--text-primary); }
+.settings-row-description { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+
+/* ==========================================================================
+   5. CONTAINER CARDS & INPUT CONTROLS SPECIFICATIONS
+   ========================================================================== */
+.settings-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 4px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.fields-action-toolbar-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-section);
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-section);
+    cursor: pointer;
+    transition: background-color 100ms ease;
+}
+
+.settings-row:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+body.is-chrome.light .settings-row:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.settings-row:last-child {
+    border-bottom: none;
+}
+
+.form-dropdown-select,
+.form-input-field {
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 4px;
+    color: var(--text-primary);
+    outline: none;
+    font-size: 14px;
+    transition: border-color 150ms ease;
+    border: 1px solid var(--border-color);
+    background-color: var(--search-bg);
+}
+
+textarea.form-input-field {
+    height: 100px;
+
+}
+
+.form-dropdown-select:focus,
+.form-input-field:focus {
+    border-color: var(--accent-blue);
+}
+
+.form-dropdown-select[readonly],
+.form-input-field[readonly] {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+body.is-edge .form-dropdown-select,
+body.is-edge .form-input-field {
+    border-radius: 4px;
+    border: 1px solid #ababab;
+}
+
+/* ==========================================================================
+   12. NATIVE DRAG AND DROP VISUAL REORDER GUIDES
+   ========================================================================== */
+.draggable-array-row.is-dragging-row {
+    opacity: 0.4; /* Fades out the row currently picked up by the user mouse */
+    background-color: var(--search-bg) !important;
+    border: 1px dashed var(--border-color) !important;
+}
+
+/* Changes cursor styling when hovering directly over the dragging handles */
+.array-row-drag-handle:active {
+    cursor: grabbing !important;
+}
+
+/* Upper border guide indicator line */
+.draggable-array-row.drag-target-above {
+    border-top: 2px solid var(--accent-blue) !important;
+    background-color: var(--nav-hover);
+}
+
+/* Lower border guide indicator line */
+.draggable-array-row.drag-target-below {
+    border-bottom: 2px solid var(--accent-blue) !important;
+    background-color: var(--nav-hover);
+}
+
+/* ==========================================================================
+   13. WIDGET SPACERS & PADDING ALIGNMENTS POLISH
+   ========================================================================== */
+
+div:not(.textfield-widget, .selectfield-widget).input-group {
+    padding: 16px;
+    border-radius: var(--card-radius, 6px);
+    box-shadow: var(--card-shadow, none);
+}
+
+/* Pushes the field label group header away from the previous text boxes */
+#arrayValuesList label {
+    display: block;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/*
+   THE HORIZONTAL ALIGNMENT PASS:
+   Clears card border shadows and introduces native side padding constraints
+   only for legacy array list containers, leaving ArrayBuilder widgets isolated.
+*/
+#arrayValuesList:not(.arraybuilder-widget) .settings-card {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+/* Applies symmetrical padding gaps inside your insertion control row bars */
+#arrayValuesList .new-entry-row {
+    padding: 0px 0px 12px 0px !important; /* Strips double nesting margins safely */
+    margin-bottom: 12px;
+}
+
+/* Gives individual row records breathing room on the workspace canvas */
+#arrayValuesList:not(.arraybuilder-widget) .settings-row {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 14px 20px !important; /* Restores native row look */
+    margin-bottom: 10px;            /* Adds a clean gap beneath each list card */
+    box-shadow: var(--card-shadow);
+}
+
+/* Ensure child layouts inherit clean input elements proportions */
+#arrayValuesList .toolbar-actions-block {
+    display: flex;
+    align-items: center;
+    gap: 16px !important; /* Spacing between handle, badge, and text box */
+}
+
+/* ==========================================================================
+   14. HOME ACTIVE DATASETS INVENTORY MATRIX CARD (.home-inventory-spec)
+   ========================================================================== */
+
+/* Gives the main inventory card elements uniform spacing and breathing room */
+.home-inventory-row {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Formats the file layout row details cleanly */
+.home-inventory-path-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Standard sheet document icon emblem spacing font constraints */
+.home-inventory-file-icon {
+    color: var(--text-secondary);
+}
+
+/* Forces file pathway labels to align as code tags */
+.home-inventory-path-text {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* Pins a compact status flag badge indicator label token onto the far-right edge */
+.home-inventory-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+}
+/* ==========================================================================
+   THEME-AWARE TOGGLE SWITCH COMPONENT
+   ========================================================================== */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Hide default checkbox */
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   OFF STATE (UNCHECKED)
+   -------------------------------------------------------------------------- */
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    border: 1px solid var(--border-color, #757575);
+    border-radius: 20px;
+    transition: all 150ms ease;
+}
+
+/* Off Knob */
+.toggle-slider::before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-secondary, #8e8e8e);
+    border-radius: 50%;
+    transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.toggle-switch:hover input:not(:checked) + .toggle-slider {
+    border-color: var(--text-primary, #a1a1a1);
+}
+
+/* --------------------------------------------------------------------------
+   ON STATE (CHECKED - LIGHT MODE DEFAULT)
+   -------------------------------------------------------------------------- */
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--accent-blue, #1a73e8);
+    border-color: var(--accent-blue, #1a73e8);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(18px);
+    background-color: #ffffff;
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   DARK MODE OVERRIDES
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    /* Off State */
+    .toggle-slider {
+        border-color: var(--border-color, rgba(255, 255, 255, 0.3));
+    }
+
+    .toggle-slider::before {
+        background-color: var(--text-secondary, #9aa0a6);
+    }
+
+    /* On State - Pastel Light Blue Track + Dark Knob */
+    .toggle-switch input:checked + .toggle-slider {
+        background-color: #a8cdfc;
+        border-color: #a8cdfc;
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+        background-color: #0b192c;
+    }
+}
+
+/* Class-based Dark Mode override support (e.g. body.dark or body.is-chrome.dark) */
+body.dark .toggle-switch input:checked + .toggle-slider,
+body.is-chrome.dark .toggle-switch input:checked + .toggle-slider {
+    background-color: #a8cdfc;
+    border-color: #a8cdfc;
+}
+
+body.dark .toggle-switch input:checked + .toggle-slider::before,
+body.is-chrome.dark .toggle-switch input:checked + .toggle-slider::before {
+    background-color: #0b192c;
+}
+
+/* Accessibility Focus Indicator */
+.toggle-switch input:focus-visible + .toggle-slider {
+    outline: 2px solid var(--accent-blue, #8ab4f8);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   15. HOME VIEW EXTENDED STYLES
+   ========================================================================== */
+.container-wrapper {
+    margin-bottom: 28px;
+}
+
+.container-wrapper .alert-message-no-bottom {
+    margin-bottom: 0;
+}
+
+.container-wrapper .container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.container-wrapper .container-header .header-actions .chrome-btn-secondary {
+    margin-left: 5px;
+}
+
+.container-wrapper .container-header .section-title-medium {
+    margin: 0;
+    font-weight: 500;
+}
+
+.container-wrapper .container-header .register-file-btn {
+    font-size: 12px;
+    padding: 4px 12px;
+}
+
+select:invalid {
+    color: #757575;
+}
+select option {
+    color: var(--text-primary);
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc3545' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem 1rem;
+}
+
+.is-invalid:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+    font-weight: 500;
+}
+/* ==========================================================================
+   SECONDARY BUTTON DISABLED STATE
+   ========================================================================== */
+
+.chrome-btn-secondary:disabled,
+.chrome-btn-secondary.disabled,
+.dialog-action-btn:disabled,
+.dialog-action-btn.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    border-color: rgba(140, 140, 140, 0.25) !important;
+}
+
+/* Ensure hover effects are stripped when disabled */
+.chrome-btn-secondary:disabled:hover,
+.chrome-btn-secondary.disabled:hover,
+.dialog-action-btn:disabled:hover,
+.dialog-action-btn.disabled:hover {
+    background-color: inherit;
+    border-color: rgba(140, 140, 140, 0.25) !important;
+    color: inherit;
+    box-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .chrome-btn-secondary:disabled,
+    .chrome-btn-secondary.disabled,
+    .dialog-action-btn:disabled,
+    .dialog-action-btn.disabled {
+        opacity: 0.35;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        background-color: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+aside.warning {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0 0 0;
+    background: transparent;
+    border: none;
+    /* Uses a warm amber/orange that stands out clearly on both light and dark backgrounds */
+    color: #d97706;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin: 4px 0 0 0;
+    box-shadow: none;
+}
+
+aside.warning::before {
+    content: "⚠️";
+    font-size: 0.85rem;
+}
+
+aside.warning {
+    margin: 0;
+}

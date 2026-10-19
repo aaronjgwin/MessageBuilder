@@ -1,0 +1,414 @@
+/* File location: ./widgets/MapBuilder.css */
+
+/* ==========================================================================
+   1. THEME VARIABLES & CONTAINER BASE
+   ========================================================================== */
+.mapbuilder-widget {
+    --mb-font-family: inherit;
+    --mb-background-card: var(--bg-surface, #ffffff);
+    --mb-border-color: var(--border-color, #e0e0e0);
+    --mb-text-primary: var(--text-primary, #333333);
+    --mb-text-secondary: var(--text-secondary, #666666);
+    --mb-text-error: #d32f2f;
+
+    /* Soft Accent Bar background */
+    --mb-search-row-bg: var(--nav-hover, rgba(0, 0, 0, 0.015));
+
+    /* Inputs & Controls */
+    --mb-input-bg: var(--search-bg, #ffffff);
+    --mb-input-border: var(--border-color, #cccccc);
+    --mb-input-focus-border: var(--accent-blue, #0066cc);
+
+    /* Buttons & Badges */
+    --mb-btn-bg: transparent;
+    --mb-btn-text: var(--text-primary, #333333);
+    --mb-btn-border: var(--border-color, #cccccc);
+    --mb-btn-hover-bg: var(--accent-light, #e0e0e0);
+    --mb-badge-bg: var(--border-color, #e0e0e0);
+    --mb-badge-text: var(--text-primary, #333333);
+
+    font-family: var(--mb-font-family);
+    color: var(--mb-text-primary);
+    width: 100%;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.mapbuilder-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mapbuilder-widget label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.mapbuilder-widget .field-asterisk {
+    color: var(--mb-text-error);
+}
+
+/* ==========================================================================
+   2. WIDGET STRUCTURE: Cards, Bars, and Content Layout
+   ========================================================================== */
+.mapbuilder-widget .settings-card.spaced-card-top {
+    margin-top: 16px;
+    background: var(--mb-background-card);
+    border: 1px solid var(--mb-border-color);
+    border-radius: var(--card-radius, 6px);
+    box-shadow: var(--card-shadow, none);
+}
+
+.mapbuilder-widget .new-entry-row.inline-form-row.section-border-bottom {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--mb-border-color);
+}
+
+.mapbuilder-widget .map-search-row {
+    background-color: var(--mb-search-row-bg);
+}
+
+.mapbuilder-widget .map-insertion-row {
+    gap: 12px;
+}
+
+.mapbuilder-widget .unified-input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.mapbuilder-widget .search-icon-indicator {
+    position: absolute;
+    left: 12px;
+    font-size: 12px;
+    color: var(--mb-text-secondary);
+    pointer-events: none;
+    user-select: none;
+}
+
+.mapbuilder-widget .text-badge-label {
+    background: var(--mb-badge-bg);
+    color: var(--mb-badge-text);
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 3px;
+    user-select: none;
+}
+
+/* ==========================================================================
+   3. FORM INPUT CONTROLS & BOOLEAN TOGGLE WRAPPER
+   ========================================================================== */
+.mapbuilder-widget .form-input-field {
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--mb-input-border, var(--border-color));
+    border-radius: 4px;
+    background-color: var(--mb-input-bg, var(--search-bg));
+    color: var(--mb-text-primary, var(--text-primary));
+    font-size: 13px;
+    outline: none;
+    transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+.mapbuilder-widget .form-toggle-field {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: transparent;
+    flex: 1;
+    min-width: 0;
+    height: 32px;
+}
+
+.mapbuilder-widget .form-input-field:focus {
+    outline: none;
+    border-color: var(--mb-input-focus-border);
+}
+
+.mapbuilder-widget .unified-input-wrapper .form-input-field {
+    width: 100%;
+    padding-left: 32px !important;
+}
+
+.mapbuilder-widget .map-key-input,
+.mapbuilder-widget .map-value-input,
+.mapbuilder-widget .toolbar-actions-block .form-input-field {
+    flex: 1;
+    width: 0; /* Prevents flex overflow */
+}
+
+.mapbuilder-widget .form-input-field:read-only {
+    background-color: var(--mb-search-row-bg);
+    color: var(--mb-text-secondary);
+    cursor: not-allowed;
+}
+
+/* Left-aligned, borderless container wrapper for boolean toggle rows */
+.mapbuilder-widget .form-input-field.map-row-toggle {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    height: 32px;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   4. DYNAMIC ACTION BUTTONS
+   ========================================================================== */
+.mapbuilder-widget .chrome-btn-secondary,
+.mapbuilder-widget button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--mb-btn-bg);
+    color: var(--mb-btn-text);
+    border: 1px solid var(--mb-btn-border);
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.mapbuilder-widget .chrome-btn-secondary:hover,
+.mapbuilder-widget button:hover {
+    background: var(--mb-btn-hover-bg);
+}
+
+.mapbuilder-widget .map-add-btn {
+    font-size: 16px;
+    width: 36px;
+    height: 32px;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   5. DYNAMIC DOCK ENTRY LIST
+   ========================================================================== */
+.mapbuilder-widget .unstyled-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+}
+
+.mapbuilder-widget .settings-row,
+.mapbuilder-widget .map-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px; /* Spacing between input fields area and Delete button */
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border-section, var(--mb-border-color));
+    background: var(--mb-background-card);
+}
+
+.mapbuilder-widget .settings-row:last-child {
+    border-bottom: none;
+}
+
+.mapbuilder-widget .map-row-inputs {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 16px;
+}
+
+/* ==========================================================================
+   6. HEADER ROW & EDIT/LOCK TOGGLE SWITCH COMPONENT
+   ========================================================================== */
+.mapbuilder-widget .field-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.mapbuilder-widget .field-header-row label {
+    text-transform: uppercase;
+ }
+
+.mapbuilder-widget .toggle-group-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mapbuilder-widget .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mapbuilder-widget .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.mapbuilder-widget .toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--mb-input-border, #ccc);
+    transition: 0.2s ease-in-out;
+    border-radius: 20px;
+}
+
+.mapbuilder-widget .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    transition: 0.2s ease-in-out;
+    border-radius: 50%;
+}
+
+.mapbuilder-widget .toggle-switch input:checked + .toggle-slider {
+    background-color: var(--accent-blue, #0066cc);
+}
+
+.mapbuilder-widget .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.mapbuilder-widget .toggle-switch input:focus + .toggle-slider {
+    box-shadow: 0 0 2px var(--accent-blue, #0066cc);
+}
+/* ==========================================================================
+   MAPBUILDER SELECT DROPDOWN DARK MODE STYLING
+   ========================================================================== */
+
+/* Dark mode select control */
+.mapbuilder-widget select.map-key-input,
+.mapbuilder-widget select.form-input-field {
+    background-color: #242529;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+/* Explicit background and text color for dropdown list items */
+.mapbuilder-widget select.map-key-input option,
+.mapbuilder-widget select.form-input-field option {
+    background-color: #1e1f23;
+    color: #f1f5f9;
+    padding: 8px;
+}
+
+/* Muted state for placeholder option */
+.mapbuilder-widget select.map-key-input option:disabled,
+.mapbuilder-widget select.form-input-field option:disabled {
+    color: #64748b;
+    background-color: #1e1f23;
+}
+
+/* Focus state */
+.mapbuilder-widget select.map-key-input:focus,
+.mapbuilder-widget select.form-input-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* ==========================================================================
+   MAPBUILDER SELECT DROPDOWN THEMING (LIGHT & DARK MODE)
+   ========================================================================== */
+
+/* Base / Light Mode */
+.mapbuilder-widget select.map-key-input,
+.mapbuilder-widget select.form-input-field {
+    background-color: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.mapbuilder-widget select.map-key-input option,
+.mapbuilder-widget select.form-input-field option {
+    background-color: #ffffff;
+    color: #1e293b;
+    padding: 8px;
+}
+
+.mapbuilder-widget select.map-key-input option:disabled,
+.mapbuilder-widget select.form-input-field option:disabled {
+    color: #94a3b8;
+    background-color: #ffffff;
+}
+
+.mapbuilder-widget select.map-key-input:focus,
+.mapbuilder-widget select.form-input-field:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+    .mapbuilder-widget select.map-key-input,
+    .mapbuilder-widget select.form-input-field {
+        background-color: #242529;
+        color: #e2e8f0;
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .mapbuilder-widget select.map-key-input option,
+    .mapbuilder-widget select.form-input-field option {
+        background-color: #1e1f23;
+        color: #f1f5f9;
+    }
+
+    .mapbuilder-widget select.map-key-input option:disabled,
+    .mapbuilder-widget select.form-input-field option:disabled {
+        color: #64748b;
+        background-color: #1e1f23;
+    }
+
+    .mapbuilder-widget select.map-key-input:focus,
+    .mapbuilder-widget select.form-input-field:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    }
+}
+.mapbuilder-widget .map-insertion-row .map-add-btn {
+    flex-shrink: 0;
+    min-width: 36px;
+}
+
+.mapbuilder-widget .map-insertion-row .map-value-container {
+    min-width: 0; /* Prevents container from pushing flex children off screen */
+}

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   WIDGET: SELECT FIELD DROPDOWN (.selectfield-widget)
+   ========================================================================== */
+.selectfield-widget {
+    --sf-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.selectfield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.selectfield-widget .field-asterisk {
+    color: var(--sf-text-error);
+    font-weight: bold;
+}
+
+/* Scoped selector ensuring layout drops flawlessly without forcing hard dimensions */
+.selectfield-widget select {
+    width: 100%;
+    box-sizing: border-box;
+}

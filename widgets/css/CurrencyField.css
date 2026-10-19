@@ -1,0 +1,36 @@
+/* ==========================================================================
+   WIDGET: CURRENCY FIELD INPUT (.currencyfield-widget)
+   ========================================================================== */
+.currencyfield-widget {
+    --cf-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.currencyfield-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.currencyfield-widget .field-asterisk {
+    color: var(--cf-text-error);
+    font-weight: bold;
+}
+
+/* Wrapper container layout for financial fields */
+.currencyfield-widget .currency-input-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+/* Structural text box layout within the widget environment */
+.currencyfield-widget .currency-input-wrapper input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Optional thematic modifier layout class for alternate text alignments */
+.currencyfield-widget .currency-input-wrapper.align-right input[type="text"] {
+    text-align: right;
+}

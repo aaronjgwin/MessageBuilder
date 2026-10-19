@@ -1,0 +1,30 @@
+/* ==========================================================================
+   WIDGET: OBJECT SELECT DATALIST (.objectSelect-widget)
+   ========================================================================== */
+.objectSelect-widget {
+    --osf-text-error: #ff4d4d;
+    width: 100%;
+}
+
+.objectSelect-widget .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.objectSelect-widget .field-asterisk {
+    color: var(--osf-text-error);
+    font-weight: bold;
+}
+
+/* Wrapper structural box layer handling the data input and option listings safely */
+.objectSelect-widget .object-select-field-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Base structural layout for input elements within this component wrapper */
+.objectSelect-widget input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}

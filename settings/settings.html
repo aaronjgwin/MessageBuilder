@@ -1,0 +1,210 @@
+<!-- File location: ./settings/settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <script src="jszip.min.js"></script>
+
+    <!-- Modular Layout Architecture Styles Stack -->
+    <link rel="stylesheet" href="./theme-tokens.css">
+    <link rel="stylesheet" href="./layout-toolbar.css">
+    <link rel="stylesheet" href="./layout-nav.css">
+    <link rel="stylesheet" href="./layout-content.css">
+    <link rel="stylesheet" href="./buttons-chrome.css">
+    <link rel="stylesheet" href="./buttons-edge.css">
+
+    <!-- Widget Styles -->
+    <link rel="stylesheet" href="../widgets/css/ArrayBuilder.css">
+    <link rel="stylesheet" href="../widgets/css/MapBuilder.css">
+    <link rel="stylesheet" href="../widgets/css/ToggleField.css">
+
+
+</head>
+<body class="is-chrome">
+
+<!-- TOP GLOBAL TOOLBAR CAP BANNER -->
+<header class="toolbar">
+    <!-- Slot 1: Brand Typography Platform Space -->
+    <div id="leftContent">
+        <div id="leftSpacer">
+            <span id="product-logo">&#9881;</span>
+            <span id="brand-title">Settings</span>
+        </div>
+    </div>
+    <!-- Slot 2: Center Pillar Capsule Input Search Banner -->
+    <div id="centeredContent">
+        <div class="search-banner-wrapper">
+            <span class="search-box-icon">&#128269;</span>
+            <input type="text" placeholder="Search settings" aria-label="Search settings">
+        </div>
+    </div>
+    <!-- Slot 3: Action Ribbon Export Controls -->
+    <div id="rightContent">
+        <button type="button" id="exportJsonBtn" class="chrome-btn-secondary">&#128197; Download Settings</button>
+    </div>
+</header>
+
+<!-- STRUCTURAL APPLICATION RUNWAY BACKDROP GRID -->
+<div class="layout-container">
+
+    <!-- COLUMN 1: COMPREHENSIVE SIDEBAR ROUTING LINK MENU -->
+    <div class="column sidebar-column">
+        <nav aria-label="Primary Navigation">
+            <ul id="sidebarNavigationMenu">
+                <li class="nav-menu-item active" data-target="homeView">
+                    <span class="sidebar-icon">&#127968;</span>
+                    <label>Home</label>
+                </li>
+                <li class="nav-menu-item" data-target="view-fields">
+                    <span class="sidebar-icon">&#128221;</span>
+                    <label>Fields</label>
+                </li>
+                <li class="nav-menu-item" data-target="view-tabs">
+                    <span class="sidebar-icon">&#128451;</span>
+                    <label>Tabs</label>
+                </li>
+                <li class="nav-menu-item" data-target="view-templates">
+                    <span class="sidebar-icon">&#128452;</span>
+                    <label>Templates</label>
+                </li>
+                <li class="nav-menu-item" data-target="view-resources">
+                    <span class="sidebar-icon">&#128295;</span>
+                    <label>Resources</label>
+                </li>
+                <li class="nav-menu-item" data-target="view-datasets">
+                    <span class="sidebar-icon">&#128453;</span>
+                    <label>Datasets</label>
+                </li>
+                <li class="section-break-divider" aria-hidden="true"></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div class="scrollpanel-wrapper">
+        <div class="main-content-stream">
+            <main>
+
+                <!-- ==========================================================================
+                     PRIMARY ROUTED DASHBOARD SECTION SCREENS CORES (6 ACTIVE CHANNELS)
+                     ========================================================================== -->
+
+                <div id="homeView" class="settings-view-section active" data-type="view">
+                    <div id="homeOverviewContainer" class="container-wrapper">
+                        <h2>Dashboard Overview</h2>
+                        <div class="settings-card spaced-card-top">
+                            <div class="card-inner-padding">
+                                <p class="alert-message-text alert-message-no-bottom">Welcome to Message Builder Control Deck. Select a path link on the left to begin customizing data trees.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="homeDefaultsContainer" class="container-wrapper">
+                        <div class="container-header">
+                            <h3 class="section-title-medium">Defaults Settings</h3>
+                        </div>
+                        <div id="homeDefaultsList" class="widget-container"></div>
+                    </div>
+                    <div id="homeLinkedDefaultsContainer" class="container-wrapper">
+                        <div class="container-header">
+                            <h3 class="section-title-medium">Linked Defaults</h3>
+                            <button type="button" id="addLinkedDefault" class="chrome-btn-secondary register-file-btn">Add Default Link</button>
+                        </div>
+                        <div id="homeLinkedDefaultsList" class="widget-container"></div>
+                    </div>
+                    <div id="homeDatasetsContainer" class="container-wrapper">
+                        <div class="container-header">
+                            <h3 class="section-title-medium">Managed Datasets Registry</h3>
+                            <button type="button" id="importDatasetFileBtn" class="chrome-btn-secondary register-file-btn">📁 Add Dataset File...</button>
+                        </div>
+                        <input type="file" id="hiddenDatasetFileInput" accept=".json" style="display: none !important">
+                        <div id="homeActiveDatasetsList" class="widget-container"></div>
+                    </div>
+                </div>
+
+                <div id="editLinkedDefaultsScreen" class="settings-view-section" data-type="screen">
+                    <div class="container-wrapper">
+
+                        <div class="container-header">
+                            <h2 id="linkedDefaultFormTitle">Edit Linked Default Rule</h2>
+                            <button type="button" id="deleteLinkedDefaultBtn" class="chrome-btn-danger">Delete Rule</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <form id="linkedDefaultForm">
+                                <input type="hidden" id="linkedDefaultIndex" value="-1">
+
+                                <div class="fields-action-toolbar-card">
+                                    <span class="toolbar-status-label">Linked Default Rule</span>
+                                    <div class="toolbar-actions-block">
+                                        <button type="button" id="cancelLinkedDefaultBtn" class="chrome-btn-secondary">Cancel</button>
+                                        <button type="submit" id="saveLinkedDefaultBtn" class="chrome-btn-primary">&#128190; SAVE CHANGES</button>
+                                    </div>
+                                </div>
+
+                                <div class="card-inner-padding section-border-bottom">
+                                    <label for="linkedFieldType" class="form-label-heading">Field Type <span class="field-asterisk">*</span></label>
+                                    <select id="linkedFieldType" class="form-input-field" required></select>
+                                </div>
+
+                                <div class="card-inner-padding section-border-bottom">
+                                    <label for="linkedFieldProperty" class="form-label-heading">Field Property <span class="field-asterisk">*</span></label>
+                                    <select id="linkedFieldProperty" class="form-input-field" required></select>
+                                </div>
+
+                                <div class="card-inner-padding section-border-bottom">
+                                    <label for="linkedDefaultsProperty" class="form-label-heading">Defaults Property Key <span class="field-asterisk">*</span></label>
+                                    <select id="linkedDefaultsProperty" class="form-input-field" required></select>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="view" class="settings-view-section" data-type="view"></div>
+                <div id="add" class="settings-view-section" data-type="screen"></div>
+                <div id="edit" class="settings-view-section" data-type="screen"></div>
+                <div id="record" class="settings-view-section" data-type="screen"></div>
+                <div id="newRecord" class="settings-view-section" data-type="screen"></div>
+                <div id="properties" class="settings-view-section" data-type="screen"></div>
+
+                <div id="downloadSettingsScreen" class="settings-view-section" data-type="screen">
+                    <div class="container-wrapper">
+
+                        <div class="container-header">
+                            <h2>Export Configuration Package</h2>
+                            <button type="button" id="cancelDownloadBtn" class="chrome-btn-secondary">Back</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="fields-action-toolbar-card">
+                                <span class="toolbar-status-label">Archive package includes 2 main output directories</span>
+                                <button type="button" id="executeZipDownloadBtn" class="chrome-btn-primary">&#128190; DOWNLOAD ZIP</button>
+                            </div>
+
+                            <div class="card-inner-padding section-border-bottom">
+                                <h3 class="form-label-heading">JSON CONFIGURATIONS (/json)</h3>
+                                <div id="downloadJsonList" class="spaced-card-top"></div>
+                            </div>
+
+                            <div class="card-inner-padding">
+                                <h3 class="form-label-heading">DATASETS (/datasets)</h3>
+                                <div id="downloadDatasetsList" class="spaced-card-top"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="./ui-controller.js"></script>
+</body>
+</html>

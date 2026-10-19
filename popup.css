@@ -1,0 +1,412 @@
+/* popup.css */
+
+/* --- CHROME SETTINGS VARIABLES --- */
+body, body.is-chrome {
+    --omnibox: #151c21;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, body.is-chrome {
+        --omnibox: #313131;
+    }
+}
+
+/* ==========================================================================
+   EDGE THEME TOKENS (UPDATED WITH DEVTOOLS DEFINITIONS)
+   ========================================================================== */
+body.is-edge {
+    --omnibox: #151c21;
+}
+
+@media (prefers-color-scheme: dark) {
+    body.is-edge {
+        --omnibox: #313131;
+    }
+}
+
+/* Global selector resets to eliminate fractional gaps */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base layout matching the software background with transparent canvas rules */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    width: 550px; /* Restored your preferred structural panel width layout */
+    box-sizing: border-box;
+    overflow: hidden;
+    height: auto;
+}
+
+/* Outer window container covering the full extension width */
+.window-frame {
+    background-color: #273138;
+    border: 1px solid #151c21;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+
+    /* White gap separating the extension window from the chrome UI bar */
+    border-top: 4px solid var(--omnibox);
+}
+
+/* Single-line flex menu bar tracking configuration */
+.nav-bar-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #172127;
+    border-bottom: 1px solid #10161b;
+    width: 100%;
+    height: 28px;
+    overflow: hidden;
+}
+
+/* Tab row strip enabling hidden horizontal scrollbars loops */
+.tab-container {
+    background-color: #172127; /* Dark menu strip color */
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.tab-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Shared baseline styling for all tab layouts */
+.tab-item {
+    color: #8fa0ae; /* Muted text for unselected tabs */
+    font-size: 12px;
+    padding: 6px 16px;
+    cursor: pointer;
+    font-weight: normal;
+    background-color: #172127; /* Dark unselected tab background */
+    border-right: 1px solid #151c21;
+    border-top: 5px solid transparent; /* Keeps padding equal to the active tab */
+    transition: background-color 0.1s, color 0.1s;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Tab hover interaction rule */
+.tab-item:hover {
+    color: #ffffff;
+    background-color: #1f2b33;
+}
+
+/* Specific styling rules for the active tab selection */
+.tab-item.active {
+    color: #ffffff; /* Bright white text */
+    background-color: #273138; /* Matches the lower form container panel body */
+    /* Clean 5px thick software accent blue top border */
+    border-top: 5px solid #437799;
+}
+
+/* Workstation numerical display positioning metrics */
+.workstation-input {
+    width: 55px !important;
+    height: 20px !important;
+    background-color: #1d262c;
+    border: 1px solid #435360;
+    color: #ffffff;
+    font-size: 11px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 5px;
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+/* Main form elements sheet converted into a 2-column layout grid system */
+.form-container {
+    background-color: #273138;
+    padding: 15px;
+    border-bottom: 1px solid #1c252a;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+    align-content: start;
+}
+
+/* Mounting node logic helper ensuring DOM elements drop cleanly into the grid */
+#formMountPoint {
+    display: contents;
+}
+
+.form-container h2 {
+    grid-column: span 2;
+    margin-bottom: 6px;
+}
+
+/* Sections headers matching Owner, Global, Archive layout rules */
+h2, h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 1px solid #384550;
+    padding-bottom: 4px;
+}
+
+/* Form component input wrappers mapping fields into cells */
+.input-group {
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    grid-column: span 1;
+}
+
+/* Only checkbox groups automatically cross across both columns now */
+.input-group:has(.checkbox-list-container) {
+    grid-column: span 2;
+}
+
+/* Small explanation text styles */
+label {
+    font-size: 11px;
+    color: #b0c2ce;
+    margin-bottom: 4px;
+}
+
+/* Inputs styled like the dark themed surveillance input boxes */
+input, select {
+    width: 100%;
+    padding: 4px 6px;
+    background-color: #1d262c;
+    border: 1px solid #435360;
+    border-radius: 1px;
+    color: #ffffff;
+    font-size: 12px;
+    box-sizing: border-box;
+    height: 24px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #5b7387;
+}
+
+/* Custom dropdown arrow for seamless dark style on standard select boxes */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='%23b0c2ce'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 14px;
+    padding-right: 24px;
+}
+
+/* Bottom section for results */
+.output-container {
+    /*background-color: #212930;*/
+    padding: 15px;
+}
+
+/* Dark output block instead of bright white */
+.statement-box {
+    background-color: #171f24;
+    color: #e2e8f0;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #33414d;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    min-height: 55px;
+    box-sizing: border-box;
+}
+
+/* Flat gradient buttons matching application layout buttons */
+button {
+    background: linear-gradient(to bottom, #4a5965, #374550);
+    color: #ffffff;
+    border: 1px solid #1c252c;
+    border-top: 1px solid #5f7180;
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    height: 26px;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #546473, #3f4f5c);
+    border-top-color: #6d8192;
+}
+
+button:active {
+    background: linear-gradient(to bottom, #323f49, #404f5b);
+}
+
+/* Success state matching the green "Done" button navbar item */
+button.copied {
+    background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+    border: 1px solid #0d2e11;
+    border-top: 1px solid #43a047;
+}
+
+button.copied:hover {
+    background: linear-gradient(to bottom, #388e3c, #2e7d32);
+    border-top-color: #4caf50;
+}
+
+/* Class rule to manage layout panel visibility switching */
+.hiddenPanel {
+    display: none !important;
+}
+
+/* --- MULTI-SELECT GRID CONFIGURATION UPDATES --- */
+.checkbox-list-container {
+    background-color: #1d262c;
+    border: 1px solid #435360;
+    padding: 12px;
+    /* Allow the box to expand dynamically based on content rows */
+    height: auto;
+    min-height: 110px;
+    max-height: none; /* Removed the hard 115px constraint */
+
+    /* Convert layout into a standard 4-column row grid */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 12px;
+    align-items: center;
+}
+
+/* Force master Select All row to stretch across the first full grid line */
+.select-all-header-row {
+    grid-column: span 4;
+    margin-bottom: 4px;
+}
+
+/* Force group section titles to slice cleanly across their own individual full line */
+.checkbox-group-bucket-title {
+    grid-column: span 4;
+    font-size: 11px;
+    font-weight: bold;
+    color: #b0c2ce;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed #384550;
+    width: 100%;
+}
+
+/* Clean row positioning elements inside cell coordinates */
+.checkbox-list-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    margin: 0;
+    /* Remove hardcoded width bounds to allow dynamic text sizing */
+    width: 100%;
+}
+
+.checkbox-list-row input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+
+/* --- INLINE TAB SCROLL ARROW BUTTONS --- */
+.nav-arrow-btn {
+    background: none !important;
+    background-color: #172127 !important;
+    color: #4c5a66;
+    border: none !important;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 24px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: none !important;
+    border-left: none !important;
+}
+
+.nav-arrow-btn:hover {
+    background: linear-gradient(to bottom, #1f2b33, #172127) !important;
+    color: #ffffff;
+}
+
+#navRightBtn {
+    border-left: none !important;
+}
+
+/* Container forcing side-by-side alignment */
+.combobox-field-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 4px; /* Clean structural visual gap between elements */
+}
+
+/* Force each child element to split exactly half the total space */
+.combobox-field-container .combobox-selector,
+.combobox-field-container .combobox-text-input {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+}
+/* ==========================================================================
+   CURRENCY INPUT FIELD SYMBOL STYLES
+   ========================================================================== */
+/* ==========================================================================
+   1. BASE / DEFAULT INPUT STYLES (Your "Old" CSS)
+   Applies when data-symbol is missing or empty
+   ========================================================================== */
+.currency-input-wrapper[data-symbol] {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-input-wrapper[data-symbol] input {
+    width: 100%;
+    padding-left: 12px; /* Standard default padding */
+}
+
+
+/* ==========================================================================
+   2. SYMBOL MODIFIER
+   Applies ONLY when data-symbol exists AND is not empty
+   ========================================================================== */
+.currency-input-wrapper[data-symbol]:not([data-symbol=""])::before {
+    content: attr(data-symbol);
+    position: absolute;
+    left: 7px;
+    color: #b0c2ce;
+    font-size: 12px;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+}
+
+.currency-input-wrapper[data-symbol]:not([data-symbol=""]) input {
+    /* Override padding only when the symbol is present */
+    padding-left: calc(7px + (var(--symbol-len, 1) * 0.9ch) + 3px);
+}

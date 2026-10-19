@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Synopsis Builder",
+  "version": "1.1.0",
+  "description": "A copy-paste form based message creator that injects user data into a template.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "json/*.json",
+        "datasets/*.json",
+        "settings/*.json",
+        "settings/settings.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

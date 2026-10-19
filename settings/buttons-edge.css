@@ -1,0 +1,101 @@
+/* File location: ./settings/buttons-edge.css */
+
+/* --- EDGE PRIMARY FLAT WHITE ACTIONS --- */
+body.is-edge button.chrome-btn-primary {
+    background-color: var(--bg-surface, #ffffff);
+    color: var(--text-primary, #242424);
+    border: 1px solid var(--border-color, #d1d1d1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-radius: var(--card-radius, 4px);
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.is-edge button.chrome-btn-primary:hover {
+    background-color: var(--search-bg, #f5f5f5);
+    border-color: #cccccc;
+}
+
+/* --- EDGE SECONDARY FLAT WHITE ACTIONS --- */
+body.is-edge button.chrome-btn-secondary {
+    background-color: var(--bg-surface, #ffffff);
+    color: var(--text-primary, #242424);
+    border: 1px solid var(--border-color, #d1d1d1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-radius: var(--card-radius, 4px);
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.is-edge button.chrome-btn-secondary:hover {
+    background-color: var(--search-bg, #f5f5f5);
+    border-color: #cccccc;
+}
+
+/* --- EDGE DANGER ACTIONS --- */
+body.is-edge button.chrome-btn-danger {
+    background-color: #c42b1c;
+    color: #ffffff;
+    border: 1px solid #c42b1c;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-radius: var(--card-radius, 4px);
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 100ms ease, border-color 100ms ease;
+}
+
+body.is-edge button.chrome-btn-danger:hover {
+    background-color: #b12719;
+    border-color: #b12719;
+}
+
+/* ==========================================================================
+   EDGE SYSTEM DARK MODE THEME RE-MAPPING INVERSIONS
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    body.is-edge button.chrome-btn-primary,
+    body.is-edge button.chrome-btn-secondary {
+        background-color: var(--bg-surface, #2d2d2d);
+        border-color: var(--border-color, #444444);
+        color: var(--text-primary, #ffffff);
+        box-shadow: none;
+    }
+
+    body.is-edge button.chrome-btn-primary:hover,
+    body.is-edge button.chrome-btn-secondary:hover {
+        background-color: var(--border-section, #383838);
+    }
+
+    body.is-edge button.chrome-btn-danger {
+        background-color: #c42b1c;
+        border-color: #c42b1c;
+        color: #ffffff;
+        box-shadow: none;
+    }
+
+    body.is-edge button.chrome-btn-danger:hover {
+        background-color: #d13438;
+        border-color: #d13438;
+    }
+}
